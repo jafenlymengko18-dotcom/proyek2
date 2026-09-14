@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LMS Pendataan Siswa Pro</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Menggunakan FontAwesome untuk Ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container fade-in">
+        <header>
+            <div class="header-text">
+                <h1><i class="fas fa-graduation-cap"></i> Portal Data Siswa PPLG</h1>
+                <p>SMKS Kristen 2 Tomohon - Sistem Informasi Manajemen</p>
+            </div>
+            <button onclick="exportToCSV()" class="btn-export"><i class="fas fa-file-excel"></i> Export CSV</button>
+        </header>
+
+        <!-- Kartu Statistik -->
+        <div class="dashboard-stats">
+            <div class="stat-card">
+                <i class="fas fa-users"></i>
+                <div class="stat-info">
+                    <h3>Total Siswa</h3>
+                    <p id="totalSiswa">0</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-laptop-code"></i>
+                <div class="stat-info">
+                    <h3>Kelas X PPLG</h3>
+                    <p id="totalX">0</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-server"></i>
+                <div class="stat-info">
+                    <h3>Kelas XI PPLG</h3>
+                    <p id="totalXI">0</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-database"></i>
+                <div class="stat-info">
+                    <h3>Kelas XII PPLG</h3>
+                    <p id="totalXII">0</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <!-- Form Input Data -->
+            <div class="form-section card">
+                <h2 id="formTitle"><i class="fas fa-user-plus"></i> Tambah Data Siswa</h2>
+                <form id="studentForm">
+                    <input type="hidden" id="editIndex" value="-1">
+                    <div class="input-group">
+                        <label for="nisn">NISN</label>
+                        <input type="number" id="nisn" required placeholder="Contoh: 0051234567">
+                    </div>
+                    <div class="input-group">
+                        <label for="nama">Nama Lengkap</label>
+                        <input type="text" id="nama" required placeholder="Masukkan Nama Lengkap">
+                    </div>
+                    <div class="input-group">
+                        <label for="kelas">Kelas</label>
+                        <select id="kelas" required>
+                            <option value="">-- Pilih Kelas PPLG --</option>
+                            <option value="X PPLG">X PPLG</option>
+                            <option value="XI PPLG">XI PPLG</option>
+                            <option value="XII PPLG">XII PPLG</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="alamat">Alamat / Domisili</label>
+                        <textarea id="alamat" rows="3" required placeholder="Alamat lengkap tempat tinggal..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit" id="btnSubmit"><i class="fas fa-save"></i> Simpan Data</button>
+                    <button type="button" class="btn-cancel" id="btnCancel" style="display:none;" onclick="resetForm()">Batal Edit</button>
+                </form>
+            </div>
+
+            <!-- Tabel Data -->
+            <div class="table-section card">
+                <h2><i class="fas fa-table"></i> Database Siswa Aktif</h2>
+                <div class="search-box">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="searchInput" placeholder="Cari berdasarkan Nama atau NISN...">
+                </div>
+                <div class="table-responsive">
+                    <table id="studentTable">
+                        <thead>
+                            <tr>
+                                <th>NISN</th>
+                                <th>Nama Lengkap</th>
+                                <th>Kelas</th>
+                                <th>Alamat</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                            <!-- Data dimuat melalui JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
